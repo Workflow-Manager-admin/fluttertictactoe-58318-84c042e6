@@ -145,6 +145,7 @@ class _GameScreenState extends State<GameScreen> {
           _gameOver
               ? _resultMessage ?? ''
               : "Current: ${_isXTurn ? "X" : "O"}",
+          key: const ValueKey('result_status'), // ADDED: for integration test targeting
           style: theme.textTheme.bodyMedium!.copyWith(
             color: _gameOver ? Colors.redAccent : theme.colorScheme.primary,
             fontWeight: FontWeight.bold,
@@ -184,6 +185,7 @@ class _GameScreenState extends State<GameScreen> {
             ),
             itemBuilder: (context, index) {
               return GestureDetector(
+                key: ValueKey('board_cell_$index'), // ADDED: for test targeting
                 onTap: () => _handleTap(index),
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 110),
